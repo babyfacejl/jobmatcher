@@ -15,7 +15,6 @@ public final class DistanceHelper {
                 Math.cos(q1) * Math.cos(q2) *
                         Math.sin(deltaL / 2) * Math.sin(deltaL / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//        System.out.println("(long) (c * EARTH_RADIUS) = " + (long) (c * EARTH_RADIUS));
         return (long) (c * EARTH_RADIUS);
     }
 }
