@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class JobPredicate {
-    public static Predicate<Job> requireDriverLicense(boolean required) {
-        return p -> p.isDriverLicenseRequired() == required;
+    public static Predicate<Job> requireDriverLicense() {
+        return p -> p.isDriverLicenseRequired();
     }
 
     public static Predicate<Job> hasCertificates(List<String> certificates) {

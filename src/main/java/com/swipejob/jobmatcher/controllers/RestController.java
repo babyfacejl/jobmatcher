@@ -36,15 +36,20 @@ public class RestController {
     private static Map<Long, Worker> workerMap;
     private final static Logger LOGGER = LoggerFactory.getLogger(RestController.class);
 
-    @GetMapping(value = "/worker/{workerId}/jobs")
+    @GetMapping(value = "/workers/{workerId}/jobs")
     public ResponseEntity<List<Job>> getJobsFor(@PathVariable long workerId) {
         Worker worker = workerMap.get(workerId);
         LOGGER.debug("Worker=", worker);
         if (!worker.isActive()) {
             return new ResponseEntity<>(null, HttpStatus.OK);
         } else {
-            List<Job> result = jobs.stream()
-                    .filter(JobPredicate.requireDriverLicense(worker.isHasDriversLicense()))
+            List<Job> result;
+            if (!worker.isHasDriversLicense()) {
+                result = jobs.stream().filter(JobPredicate.requireDriverLicense().negate()).collect(Collectors.toList());
+            } else {
+                result = jobs;
+            }
+            List<Job> sortedResult = result.stream()
                     .filter(JobPredicate.hasCertificates(worker.getCertificates()))
                     .filter(JobPredicate.needWorkers())
                     .filter(JobPredicate.withinDistance(
@@ -52,8 +57,8 @@ public class RestController {
                                     worker.getJobSearchAddress().getLatitude()), worker.getJobSearchAddress().getMaxJobDistance()))
                     .sorted()
                     .collect(Collectors.toList());
-            LOGGER.debug("Matched job =", result);
-            return new ResponseEntity<>(result.subList(0, Math.min(result.size(), 3)), HttpStatus.OK);
+            LOGGER.debug("Matched job =", sortedResult.size());
+            return new ResponseEntity<>(sortedResult.subList(0, Math.min(sortedResult.size(), 3)), HttpStatus.OK);
         }
     }
 
