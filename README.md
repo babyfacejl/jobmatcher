@@ -7,7 +7,7 @@ Matching logic
 - If worker has no drivers license then filter out jobs that require drivers license
 - Worker has all the certificates the job requires
 - Job has at least 1 worker needed
-- Job location is within worker's job search address range. (User Harversine formula to calculate the distance between 2 points on earth. Refer to https://www.movable-type.co.uk/scripts/latlong.html)
+- Job location is within worker's job search address range. (User Harversine formula to calculate the distance between 2 points on the Earth. Refer to https://www.movable-type.co.uk/scripts/latlong.html)
 
 Finally sorted jobs by highest paid rate job to lowest paid rate job
 
