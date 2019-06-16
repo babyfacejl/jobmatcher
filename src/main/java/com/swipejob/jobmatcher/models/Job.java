@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.*;
 
-public class Job implements Comparable<Job> {
+public class Job {
     @JsonProperty("driverLicenseRequired")
     private boolean driverLicenseRequired;
     @JsonProperty("requiredCertificates")
@@ -98,14 +98,4 @@ public class Job implements Comparable<Job> {
                 '}';
     }
 
-    @Override
-    public int compareTo(Job o) {
-        if (this.getBillRateAsDouble() > o.getBillRateAsDouble()) {
-            return -1;
-        }
-        if (this.getBillRateAsDouble() < o.getBillRateAsDouble()) {
-            return 1;
-        }
-        return 0;
-    }
 }
