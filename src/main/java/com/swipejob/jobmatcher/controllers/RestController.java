@@ -64,7 +64,7 @@ public class RestController {
                 return new ResponseEntity<>(sortedResult.subList(0, Math.min(sortedResult.size(), 3)), HttpStatus.OK);
             }
         } else {
-            return new ResponseEntity<Object>("Worker not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Worker not found", HttpStatus.NOT_FOUND);
         }
 
 
