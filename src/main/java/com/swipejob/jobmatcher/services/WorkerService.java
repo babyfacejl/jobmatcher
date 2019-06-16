@@ -24,7 +24,7 @@ public class WorkerService {
     private final static Logger LOGGER = LoggerFactory.getLogger(WorkerService.class);
     @Value("${swipejob.workers.url}")
     private String workersUrl;
-    private List<Worker> workers = new ArrayList<>();;
+    private List<Worker> workers = new ArrayList<>();
 
     @Cacheable // caches the result of findAll() method
     public List<Worker> findAll() {
