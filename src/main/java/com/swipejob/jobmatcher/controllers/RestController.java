@@ -8,6 +8,7 @@ import com.swipejob.jobmatcher.models.Job;
 import com.swipejob.jobmatcher.models.Location;
 import com.swipejob.jobmatcher.models.Worker;
 import com.swipejob.jobmatcher.predicate.JobPredicate;
+import com.swipejob.jobmatcher.utils.RateComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,7 +56,7 @@ public class RestController {
                     .filter(JobPredicate.withinDistance(
                             new Location(worker.getJobSearchAddress().getLongitude(),
                                     worker.getJobSearchAddress().getLatitude()), worker.getJobSearchAddress().getMaxJobDistance()))
-                    .sorted()
+                    .sorted(new RateComparator())
                     .collect(Collectors.toList());
             LOGGER.debug("Matched job =", sortedResult.size());
             return new ResponseEntity<>(sortedResult.subList(0, Math.min(sortedResult.size(), 3)), HttpStatus.OK);

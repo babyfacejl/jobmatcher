@@ -4,10 +4,10 @@ Returned the first 3 matched jobs for a worker
 
 Matching logic
 - Worker must be active
-- If worker has no drivers license then filter out jobs that require drivers license
+- If worker has no drivers license jobs that require drivers license are filtered out
 - Worker has all the certificates the job requires
 - Job has at least 1 worker needed
-- Job location is within worker's job search address range. (User Harversine formula to calculate the distance between 2 points on the Earth. Refer to https://www.movable-type.co.uk/scripts/latlong.html)
+- Job location is within worker's job search address range. (Use Harversine formula to calculate the distance between 2 points on the Earth. Refer to https://www.movable-type.co.uk/scripts/latlong.html)
 
 Finally sorted jobs by highest paid rate job to lowest paid rate job
 
@@ -27,7 +27,6 @@ Finally sorted jobs by highest paid rate job to lowest paid rate job
 ## API Endpoints
 * /api/workers/{workerId}/jobs 
 ```
- returns first 3 matched jobs for the worker
  Can use postman to do GET
  e.g http://localhost:8080/api/workers/8/jobs
 ```
