@@ -39,7 +39,7 @@ public class RestController {
 
     @GetMapping(value = "/workers/{workerId}/jobs")
     public ResponseEntity<List<Job>> getJobsFor(@PathVariable long workerId) {
-        Worker worker = workerMap.get(workerId);
+        final Worker worker = workerMap.get(workerId);
         LOGGER.debug("Worker=", worker);
         if (!worker.isActive()) {
             return new ResponseEntity<>(null, HttpStatus.OK);
@@ -73,10 +73,8 @@ public class RestController {
         try {
             String jobsJson = restTemplate.getForObject(jobsUrl, String.class);
             String workersJson = restTemplate.getForObject(workersUrl, String.class);
-            jobs = objectMapper.readValue(jobsJson, new TypeReference<List<Job>>() {
-            });
-            List<Worker> workers = objectMapper.readValue(workersJson, new TypeReference<List<Worker>>() {
-            });
+            jobs = objectMapper.readValue(jobsJson, new TypeReference<List<Job>>() {});
+            List<Worker> workers = objectMapper.readValue(workersJson, new TypeReference<List<Worker>>() {});
             workerMap = workers.stream().collect(Collectors.toMap(Worker::getUserId, Function.identity()));
         } catch (IOException e) {
             LOGGER.error(e.getMessage());

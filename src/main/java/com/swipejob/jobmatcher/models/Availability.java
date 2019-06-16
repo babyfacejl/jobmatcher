@@ -10,13 +10,13 @@ public class Availability {
     @JsonProperty("title")
     private String title;
     @JsonProperty("dayIndex")
-    private String dayIndex;
+    private int dayIndex;
 
     public String getTitle() {
         return title;
     }
 
-    public String getDayIndex() {
+    public int getDayIndex() {
         return dayIndex;
     }
 }

@@ -27,6 +27,7 @@ Finally sorted jobs by highest paid rate job to lowest paid rate job
 ## API Endpoints
 * /api/workers/{workerId}/jobs 
 ```
+ Assumed userId is the workerId
  Can use postman to do GET
  e.g http://localhost:8080/api/workers/8/jobs
 ```

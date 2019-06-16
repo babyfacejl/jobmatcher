@@ -30,4 +30,8 @@ public class JobSearchAddress {
     public double getLatitude() {
         return latitude;
     }
+
+    public String getUnit() {
+        return unit;
+    }
 }
